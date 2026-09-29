@@ -1,1 +1,5 @@
+com\devsuperior\dscommerce\factory\ProductFactory.class
+com\devsuperior\dscommerce\services\CategoryServiceTest.class
+com\devsuperior\dscommerce\services\ProductServiceTest.class
 com\devsuperior\dscommerce\DscommerceApplicationTests.class
+com\devsuperior\dscommerce\factory\CategoryFactory.class
