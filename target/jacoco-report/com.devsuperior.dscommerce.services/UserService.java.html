@@ -2,6 +2,7 @@
 
 import java.util.List;
 
+import com.devsuperior.dscommerce.util.CustomUserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,45 +20,49 @@ import com.devsuperior.dscommerce.projections.UserDetailsProjection;
 import com.devsuperior.dscommerce.repositories.UserRepository;
 
 @Service
-<span class="fc" id="L22">public class UserService implements UserDetailsService {</span>
+public class UserService implements UserDetailsService {
 
-	@Autowired
-	private UserRepository repository;
-	
+	private final UserRepository repository;
+
+	private final CustomUserUtil customUserUtil;
+
+<span class="fc" id="L29">	public UserService(UserRepository repository, CustomUserUtil customUserUtil) {</span>
+<span class="fc" id="L30">		this.repository = repository;</span>
+<span class="fc" id="L31">		this.customUserUtil = customUserUtil;</span>
+<span class="fc" id="L32">	}</span>
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-<span class="fc" id="L30">		List&lt;UserDetailsProjection&gt; result = repository.searchUserAndRolesByEmail(username);</span>
-<span class="fc bfc" id="L31" title="All 2 branches covered.">		if (result.size() == 0) {</span>
-<span class="fc" id="L32">			throw new UsernameNotFoundException(&quot;Email not found&quot;);</span>
+<span class="fc" id="L37">		List&lt;UserDetailsProjection&gt; result = repository.searchUserAndRolesByEmail(username);</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">		if (result.size() == 0) {</span>
+<span class="fc" id="L39">			throw new UsernameNotFoundException(&quot;Email not found&quot;);</span>
 		}
 		
-<span class="fc" id="L35">		User user = new User();</span>
-<span class="fc" id="L36">		user.setEmail(result.get(0).getUsername());</span>
-<span class="fc" id="L37">		user.setPassword(result.get(0).getPassword());</span>
-<span class="fc bfc" id="L38" title="All 2 branches covered.">		for (UserDetailsProjection projection : result) {</span>
-<span class="fc" id="L39">			user.addRole(new Role(projection.getRoleId(), projection.getAuthority()));</span>
-<span class="fc" id="L40">		}</span>
+<span class="fc" id="L42">		User user = new User();</span>
+<span class="fc" id="L43">		user.setEmail(result.get(0).getUsername());</span>
+<span class="fc" id="L44">		user.setPassword(result.get(0).getPassword());</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">		for (UserDetailsProjection projection : result) {</span>
+<span class="fc" id="L46">			user.addRole(new Role(projection.getRoleId(), projection.getAuthority()));</span>
+<span class="fc" id="L47">		}</span>
 		
-<span class="fc" id="L42">		return user;</span>
+<span class="fc" id="L49">		return user;</span>
 	}
 	
 	protected User authenticated() {
 		try {
-<span class="nc" id="L47">			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();</span>
-<span class="nc" id="L48">			Jwt jwtPrincipal = (Jwt) authentication.getPrincipal();</span>
-<span class="nc" id="L49">			String username = jwtPrincipal.getClaim(&quot;username&quot;);</span>
-<span class="nc" id="L50">			return repository.findByEmail(username).get();</span>
+<span class="fc" id="L54">			String username = customUserUtil.getLoggedUsername();</span>
+<span class="fc" id="L55">			return repository.findByEmail(username).get();</span>
 		}
-<span class="nc" id="L52">		catch (Exception e) {</span>
-<span class="nc" id="L53">			throw new UsernameNotFoundException(&quot;Invalid user&quot;);</span>
+<span class="fc" id="L57">		catch (Exception e) {</span>
+<span class="fc" id="L58">			throw new UsernameNotFoundException(&quot;Invalid user&quot;);</span>
 		}
 	}
 	
 	@Transactional(readOnly = true)
 	public UserDTO getMe() {
-<span class="nc" id="L59">		User entity = authenticated();</span>
-<span class="nc" id="L60">		return new UserDTO(entity);</span>
+<span class="nc" id="L64">		User entity = authenticated();</span>
+<span class="nc" id="L65">		return new UserDTO(entity);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
