@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @MockitoSettings(strictness = Strictness.LENIENT)
-@ExtendWith(git .class)
+@ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
     @InjectMocks
