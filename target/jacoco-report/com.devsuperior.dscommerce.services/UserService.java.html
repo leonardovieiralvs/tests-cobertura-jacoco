@@ -27,19 +27,19 @@ import com.devsuperior.dscommerce.repositories.UserRepository;
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-<span class="nc" id="L30">		List&lt;UserDetailsProjection&gt; result = repository.searchUserAndRolesByEmail(username);</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">		if (result.size() == 0) {</span>
-<span class="nc" id="L32">			throw new UsernameNotFoundException(&quot;Email not found&quot;);</span>
+<span class="fc" id="L30">		List&lt;UserDetailsProjection&gt; result = repository.searchUserAndRolesByEmail(username);</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">		if (result.size() == 0) {</span>
+<span class="fc" id="L32">			throw new UsernameNotFoundException(&quot;Email not found&quot;);</span>
 		}
 		
-<span class="nc" id="L35">		User user = new User();</span>
-<span class="nc" id="L36">		user.setEmail(result.get(0).getUsername());</span>
-<span class="nc" id="L37">		user.setPassword(result.get(0).getPassword());</span>
-<span class="nc bnc" id="L38" title="All 2 branches missed.">		for (UserDetailsProjection projection : result) {</span>
-<span class="nc" id="L39">			user.addRole(new Role(projection.getRoleId(), projection.getAuthority()));</span>
-<span class="nc" id="L40">		}</span>
+<span class="fc" id="L35">		User user = new User();</span>
+<span class="fc" id="L36">		user.setEmail(result.get(0).getUsername());</span>
+<span class="fc" id="L37">		user.setPassword(result.get(0).getPassword());</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">		for (UserDetailsProjection projection : result) {</span>
+<span class="fc" id="L39">			user.addRole(new Role(projection.getRoleId(), projection.getAuthority()));</span>
+<span class="fc" id="L40">		}</span>
 		
-<span class="nc" id="L42">		return user;</span>
+<span class="fc" id="L42">		return user;</span>
 	}
 	
 	protected User authenticated() {

@@ -1,5 +1,8 @@
 D:\java\IdeaProjects\dscommerce-backend-aulas-cap05-4.0.6\src\test\java\com\devsuperior\dscommerce\DscommerceApplicationTests.java
 D:\java\IdeaProjects\dscommerce-backend-aulas-cap05-4.0.6\src\test\java\com\devsuperior\dscommerce\factory\CategoryFactory.java
 D:\java\IdeaProjects\dscommerce-backend-aulas-cap05-4.0.6\src\test\java\com\devsuperior\dscommerce\factory\ProductFactory.java
+D:\java\IdeaProjects\dscommerce-backend-aulas-cap05-4.0.6\src\test\java\com\devsuperior\dscommerce\factory\UserDetailsFactory.java
+D:\java\IdeaProjects\dscommerce-backend-aulas-cap05-4.0.6\src\test\java\com\devsuperior\dscommerce\factory\UserFactory.java
 D:\java\IdeaProjects\dscommerce-backend-aulas-cap05-4.0.6\src\test\java\com\devsuperior\dscommerce\services\CategoryServiceTest.java
 D:\java\IdeaProjects\dscommerce-backend-aulas-cap05-4.0.6\src\test\java\com\devsuperior\dscommerce\services\ProductServiceTest.java
+D:\java\IdeaProjects\dscommerce-backend-aulas-cap05-4.0.6\src\test\java\com\devsuperior\dscommerce\services\UserServiceTest.java
