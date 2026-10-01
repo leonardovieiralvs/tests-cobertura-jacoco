@@ -61,8 +61,8 @@ public class UserService implements UserDetailsService {
 	
 	@Transactional(readOnly = true)
 	public UserDTO getMe() {
-<span class="nc" id="L64">		User entity = authenticated();</span>
-<span class="nc" id="L65">		return new UserDTO(entity);</span>
+<span class="fc" id="L64">		User entity = authenticated();</span>
+<span class="fc" id="L65">		return new UserDTO(entity);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
