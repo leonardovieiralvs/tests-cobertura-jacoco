@@ -38,10 +38,10 @@ import com.devsuperior.dscommerce.services.exceptions.ResourceNotFoundException;
 
     @Transactional(readOnly = true)
     public OrderDTO findById(Long id) {
-<span class="nc" id="L41">        Order order = repository.findById(id).orElseThrow(</span>
-<span class="nc" id="L42">                () -&gt; new ResourceNotFoundException(&quot;Recurso não encontrado&quot;));</span>
-<span class="nc" id="L43">        authService.validateSelfOrAdmin(order.getClient().getId());</span>
-<span class="nc" id="L44">        return new OrderDTO(order);</span>
+<span class="fc" id="L41">        Order order = repository.findById(id).orElseThrow(</span>
+<span class="fc" id="L42">                () -&gt; new ResourceNotFoundException(&quot;Recurso não encontrado&quot;));</span>
+<span class="fc" id="L43">        authService.validateSelfOrAdmin(order.getClient().getId());</span>
+<span class="fc" id="L44">        return new OrderDTO(order);</span>
     }
 
     @Transactional
